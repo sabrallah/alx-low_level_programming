@@ -8,6 +8,7 @@
  */
 int main(int argc, char *argv[])
 {
-	printf("%d\n", argc - 1); /* subtract 1 to exclude the program name */
-	return (argv != NULL); /* return 0 if argv is not NULL */
+	(void)argv;
+	printf("%d\n", argc - 1);
+	return (0);
 }
