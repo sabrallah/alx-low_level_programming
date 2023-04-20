@@ -8,28 +8,24 @@
  *          c: char
  *          i: integer
  *          f: float
- *          s: char * (if the string is NULL, print (nil) instead
- *          Any other char should be ignored
+ *          s: char * (if the string is NULL, print (nil) instead)
+ *          Any other char should be ignored.
  *
  * Return: Nothing.
  */
-
 void print_all(const char * const format, ...)
 {
 	va_list args;
 	unsigned int i = 0, j;
 	char *separator = "";
-
-	const char options[] = "cifs";
 	char *current_arg;
 
-	/* initialize the arguments */
+	const char options[] = "cifs";
+
 	va_start(args, format);
 
-	/* loop through the format string */
 	while (format && format[i])
 	{
-		/* loop through the options */
 		j = 0;
 		while (options[j])
 		{
@@ -49,21 +45,20 @@ void print_all(const char * const format, ...)
 						break;
 					case 's':
 						current_arg = va_arg(args, char *);
-						if (current_arg == NULL)
-							current_arg = "(nil)";
-						printf("%s", current_arg);
+						printf("%s", current_arg ? current_arg : "(nil)");
+						break;
+					default:
 						break;
 				}
 				separator = ", ";
+				break;
 			}
 			j++;
 		}
 		i++;
 	}
-	
-	/* clean up the arguments */
-	va_end(args);
 
-	/* print a new line */
 	printf("\n");
+
+	va_end(args);
 }
