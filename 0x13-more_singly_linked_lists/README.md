@@ -14,3 +14,9 @@ Prototype: void free_listint(listint_t *head);
 
 	  Prototype: void freelistint2(listintt **head);
 	  The function sets the head to NULL
+
+
+-task6 : Write a function that deletes the head node of a listint-t linked list, and returns the head node’s data (n).
+
+	Prototype: int poplistint(listintt **head);
+	if the linked list is empty return 0
