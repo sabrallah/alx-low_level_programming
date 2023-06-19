@@ -3,7 +3,7 @@
 
 /**
  * srand - Overwrites the srand function in the libc shared object
- * @sed: The seed to use for the random number generator. [Will be Ignored]
+ * @sed: The seed to use for the random number generator.
  */
 void srand(unsigned int sed)
 {
