@@ -38,10 +38,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 	if (!ht || !key || !strlen(key) || !value)
 		return (0);
-
 	index = key_index((const unsigned char *)key, ht->size);
 	tmp = ht->array[index];
-
 	while (tmp)
 	{
 		if (!strcmp(tmp->key, key))
@@ -52,14 +50,11 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		}
 		tmp = tmp->next;
 	}
-
 	new_node = calloc(1, sizeof(shash_node_t));
 	if (!new_node)
 		return (0);
-
 	new_node->key = strdup(key);
 	new_node->value = strdup(value);
-
 	if (!new_node->key || !new_node->value)
 	{
 		if (new_node->key)
@@ -69,17 +64,14 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		free(new_node);
 		return (0);
 	}
-
 	new_node->next = ht->array[index];
 	ht->array[index] = new_node;
-
 	if (!ht->shead)
 	{
 		ht->shead = new_node;
 		ht->stail = new_node;
 		return (1);
 	}
-
 	if (strcmp(new_node->key, ht->shead->key) < 0)
 	{
 		new_node->snext = ht->shead;
@@ -99,7 +91,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 			ht->stail = new_node;
 		tmp->snext = new_node;
 	}
-
 	return (1);
 }
 
