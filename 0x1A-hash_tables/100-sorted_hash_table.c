@@ -11,6 +11,7 @@
 shash_table_t *shash_table_create(unsigned long int size)
 {
 	shash_table_t *ht = calloc(1, sizeof(shash_table_t));
+
 	if (!ht)
 		return (NULL);
 	ht->size = size;
