@@ -1,25 +1,44 @@
-# 3-Makefile
+# Makefile for the "school" program
 
-CC = gcc
-SRC = main.c school.c
-OBJ = $(SRC:.c=.o)
-NAME = school
-RM = rm -f
+# Compiler
+CC := gcc
 
+# Source files
+SRC := main.c school.c
+
+# Object files
+OBJ := $(SRC:.c=.o)
+
+# Executable name
+NAME := school
+
+# Command to remove files
+RM := rm -f
+
+# Default target
 all: $(NAME)
 
-$(NAME): $(OBJ) 
+# Build the executable
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-$(OBJ): $(SRC)
-	$(CC) -c -o $@ $<
+# Compile source files into object files
+%.o: %.c
+	$(CC) -c $< -o $@
 
+# Clean rule: Delete temporary files and the executable
 clean:
 	$(RM) *~ $(NAME)
 
+# Object clean rule: Delete object files
 oclean:
 	$(RM) $(OBJ)
 
+# Full clean rule: Delete temporary files, the executable, and object files
 fclean: clean oclean
 
+# Recompile all source files
 re: fclean all
+
+# Declare phony targets to prevent conflicts with file names
+.PHONY: all clean oclean fclean re
