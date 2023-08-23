@@ -1,0 +1,8 @@
+# 0-Makefile
+
+NAME = school
+
+all: $(NAME)
+
+$(NAME): main.c school.c
+	gcc main.c school.c -o $(NAME)
