@@ -2,7 +2,7 @@
 """Module calculates perimeter of an island in a grid."""
 
 
-def num_water_neighbor(grid, i, j):
+def num_water_neighbors(grid, i, j):
     """Returns number water neighbors cell has in grid."""
 
     num = 0
