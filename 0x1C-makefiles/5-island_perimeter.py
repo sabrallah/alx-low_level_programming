@@ -1,42 +1,31 @@
 #!/usr/bin/python3
+"""Module that calculates the perimeter of an island in a grid."""
+
+
+def num_neighbors_water(grid, i, j):
+    """ number of water neighbors return a cell has in grid."""
+
+    num = 0
+
+    if i <= 0 or not grid[i - 1][j]:
+        num += 1
+    if j <= 0 or not grid[i][j - 1]:
+        num += 1
+    if j >= len(grid[i]) - 1 or not grid[i][j + 1]:
+        num += 1
+    if i >= len(grid) - 1 or not grid[i + 1][j]:
+        num += 1
+
+    return num
+
 
 def island_perimeter(grid):
-    """
-    Calculate the perimeter of the island described in the grid.
-    
-    Args:
-        grid (list of list of integers): The grid representing the island.
-    
-    Returns:
-        int: The perimeter of the island.
-    """
-    perimeter = 0
-    rows = len(grid)
-    cols = len(grid[0]) if rows > 0 else 0
-    
-    for i in range(rows):
-        for j in range(cols):
-            if grid[i][j] == 1:
-                perimeter += 4  # Start with the maximum perimeter for a land cell
-                
-                # Check neighboring cells and decrement the perimeter for each adjacent land cell
-                if i > 0 and grid[i - 1][j] == 1:
-                    perimeter -= 1
-                if i < rows - 1 and grid[i + 1][j] == 1:
-                    perimeter -= 1
-                if j > 0 and grid[i][j - 1] == 1:
-                    perimeter -= 1
-                if j < cols - 1 and grid[i][j + 1] == 1:
-                    perimeter -= 1
-    
-    return perimeter
+    """Returns the perimeter of the island in grid."""
 
-if __name__ == "__main__":
-    grid = [
-        [0, 0, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0]
-    ]
-    print(island_perimeter(grid))
+    perimeter = 0
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if grid[i][j]:
+                perimeter += num_water_neighbors(grid, i, j)
+
+    return perimeter
