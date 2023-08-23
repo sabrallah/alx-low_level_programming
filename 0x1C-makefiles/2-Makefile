@@ -1,27 +1,15 @@
-# 2-Makefile 
+# Compiler
+COMPILER = gcc
 
-CC = gcc
+# Source files
+SOURCE_FILES = main.c school.c
 
-SRC = main.c school.c
+# Object files
+OBJECT_FILES = $(SOURCE_FILES:.c=.o)
 
-OBJ = $(SRC:.c=.o) 
+# Output executable name
+EXECUTABLE = school
 
-NAME = school
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
-	
-$(OBJ): $(SRC) 
-	$(CC) -c -o $@ $< 
-	
-clean:
-	rm -f $(OBJ) $(NAME)
-
-oclean:
-	rm -f $(OBJ)
-
-fclean: clean oclean
-
-re: fclean all
+# Build rule
+all: $(OBJECT_FILES)
+	$(COMPILER) $(OBJECT_FILES) -o $(EXECUTABLE)
