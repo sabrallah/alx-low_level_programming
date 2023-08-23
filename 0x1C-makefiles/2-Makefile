@@ -1,15 +1,6 @@
-# Compiler
-COMPILER = gcc
-
-# Source files
-SOURCE_FILES = main.c school.c
-
-# Object files
-OBJECT_FILES = $(SOURCE_FILES:.c=.o)
-
-# Output executable name
-EXECUTABLE = school
-
-# Build rule
-all: $(OBJECT_FILES)
-	$(COMPILER) $(OBJECT_FILES) -o $(EXECUTABLE)
+CC =  gcc
+SRC =  main.c school.c
+OBJ =  $(SRC:.c=.o)
+NAME =  school
+all :  $(OBJ)
+	 $(CC) $(OBJ) -o $(NAME)
