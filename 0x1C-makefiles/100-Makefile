@@ -1,23 +1,52 @@
-# Makefile for 'school' project
+# Makefile for 'school' executable
+
+# Compiler
 CC = gcc
-SRC = main.c school.c
+
+# Source files
+SRC = main.c file1.c file2.c
+
+# Object files
 OBJ = $(SRC:.c=.o)
+
+# Executable name
 NAME = school
+
+# Compiler flags
 CFLAGS = -Wall -Werror -Wextra -pedantic
-.PHONY : all clean oclean fclean re
 
-all : $(NAME)
+# Temporary files remover
+RM = rm -f
 
-$(NAME) : $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+# Default rule
+all: $(NAME)
 
-clean :
-	$(RM) *~ $(OBJ)
+# Rule to build the executable
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-oclean :
+# Rule to clean Emacs, Vim, and executable files
+clean:
+	$(RM) *~* \#*\# $(NAME)
+
+# Rule to clean object files
+oclean:
 	$(RM) $(OBJ)
 
-fclean : clean oclean
-	$(RM) $(NAME)
+# Rule to clean Emacs, Vim, executable, and object files
+fclean: clean oclean
 
-re : fclean all
+# Rule to force recompilation of all source files
+re: fclean all
+
+# Dependencies
+main.o: main.c m.h
+	$(CC) $(CFLAGS) -c main.c
+
+file1.o: file1.c m.h
+	$(CC) $(CFLAGS) -c file1.c
+
+file2.o: file2.c m.h
+	$(CC) $(CFLAGS) -c file2.c
+
+.PHONY: all clean oclean fclean re
