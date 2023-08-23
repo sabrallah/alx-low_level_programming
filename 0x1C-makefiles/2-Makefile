@@ -1,26 +1,26 @@
-# 2-Makefile
-
-NAME = school
+# 2-Makefile 
 
 CC = gcc
 
 SRC = main.c school.c
 
-OBJ = main.o school.o
+OBJ = $(SRC:.c=.o) 
+
+NAME = school
 
 all: $(NAME)
 
-$(NAME): $(OBJ) 
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
-
-%.o: %.c
-	$(CC) -c -o $@ $<
-
+	
+$(OBJ): $(SRC) 
+	$(CC) -c -o $@ $< 
+	
 clean:
 	rm -f $(OBJ) $(NAME)
 
-oclean: 
-	rm -f $(OBJ) 
+oclean:
+	rm -f $(OBJ)
 
 fclean: clean oclean
 
