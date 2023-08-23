@@ -1,0 +1,12 @@
+# 1-Makefile
+
+NAME = school
+
+CC = gcc
+
+SRC = main.c school.c 
+
+all: $(NAME)
+
+$(NAME): $(SRC)
+	$(CC) $(SRC) -o $(NAME)
