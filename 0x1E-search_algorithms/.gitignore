@@ -8,3 +8,5 @@ listint/*.c
 106-main.c
 skiplist/*.c
 skiplist/search_algos.h
+listint/search_algos.h
+0-main.c
